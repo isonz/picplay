@@ -9,12 +9,9 @@
 <script src="js/defult.js"></script>
 </head>
 <body>
-
 <?php
 require_once 'Files.class.php';
-
-$dir = "..";
-$dirs = Files::fileTree($dir);
+$dirs = Files::fileTree("..");
 var_dump($dirs);
 
 ?>

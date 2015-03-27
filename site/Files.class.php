@@ -8,18 +8,25 @@ class Files
 	static public $dirs = array();
 	static public $files = array();
 	
-	static public function fileTree($dir)
+	static public function fileTree($sdir)
 	{
-		self::explorerDir($dir);
+		self::explorerDir($sdir);
 		$dirs = self::$dirs;
+		$dirs[] = $sdir;
 		$files = self::$files;
 		$tree = array();
-		
+
+		var_dump($dirs);
 		foreach ($dirs as $dir){
 			$len = strlen($dir);
 			foreach ($files as $file){
-				if($dir == mb_substr($file, 0,$len)){
-					$tree[$dir][] = $file;
+				if($sdir == $dir){
+					if(1 == substr_count($file, '/')){
+						$tree[$dir][] = $file;
+						continue;
+					}
+				}else{
+					if($dir.'/' == mb_substr($file, 0,$len+1)) $tree[$dir][] = $file;
 				}
 			}
 		}
@@ -47,6 +54,12 @@ class Files
 						}
 					}
 				}else{
+					$len = strlen($file);
+					$pos = strrpos($file, '.');
+					$type = substr($file, $pos+1, ($len-$pos));
+					$type = strtolower($type);
+					if(!in_array($type, self::$_filetype)) continue;
+						
 					if("." == mb_substr($file, 0,1)){
 						if(self::$_show_hide){
 							self::$files[] = $path;
