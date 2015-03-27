@@ -15,18 +15,21 @@ class Files
 		$dirs[] = $sdir;
 		$files = self::$files;
 		$tree = array();
-
-		var_dump($dirs);
+		
 		foreach ($dirs as $dir){
+			$dir = mb_convert_encoding($dir, "UTF-8", "GBK");
 			$len = strlen($dir);
 			foreach ($files as $file){
+				$file = mb_convert_encoding($file, "UTF-8", "GBK");
 				if($sdir == $dir){
 					if(1 == substr_count($file, '/')){
 						$tree[$dir][] = $file;
 						continue;
 					}
 				}else{
-					if($dir.'/' == mb_substr($file, 0,$len+1)) $tree[$dir][] = $file;
+					$child = str_replace($dir, '', $file);
+					//var_dump($dir,$file, $child);
+					if($dir.'/' == mb_substr($file, 0,$len+1) && 1 == substr_count($child,'/')) $tree[$dir][] = $file;
 				}
 			}
 		}
