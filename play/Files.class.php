@@ -2,7 +2,7 @@
 class Files
 {
 	static private $_filetype = array("jpg", "png", "gif", "bmp");
-	static private $_excluded_folder = array("../site");
+	static private $_excluded_folder = array("../play");
 	static private $_show_hide = false;	 //是否显示隐藏(.开头)文件
 	
 	static public $dirs = array();

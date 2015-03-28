@@ -34,8 +34,17 @@ echo "var tree=".json_encode($dirs);
 	<em>Powered by Ison</em>
 </div>
 
-<div id="pop"></div>
+
 <div id="bgMask"></div>
+<div id="pop">
+	<div id="pop_top"></div>
+	<div id="pop_left"></div>
+	<div id="pop_right"></div>
+	<div id="pop_bottom"></div>
+	<div id="pop_close"></div>
+	<div id="pop_pic"></div>
+</div>
+
 
 <script type="text/javascript" src="js/default.js"></script>
 </body>
