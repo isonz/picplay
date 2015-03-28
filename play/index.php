@@ -41,6 +41,8 @@ echo "var tree=".json_encode($dirs);
 	<div id="pop_left"></div>
 	<div id="pop_right"></div>
 	<div id="pop_bottom"></div>
+	<div id="pop_autoplay"></div>
+	<div id="pop_pause"></div>
 	<div id="pop_close"></div>
 	<div id="pop_pic"></div>
 </div>

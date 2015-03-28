@@ -83,9 +83,7 @@ a:hover{ text-decoration:underline;}
 	left:50%;
 	border: 2px #fff solid;
 }
-#pop_pic{
-	
-}
+
 #pop_close{
 	width:35px;
 	height:35px;
@@ -97,9 +95,34 @@ a:hover{ text-decoration:underline;}
 #pop_close:hover{
 	background:url(../images/close_btn_h.png) no-repeat center center;
 }
+
+#pop_autoplay{
+	width:40px;
+	height:40px;
+	/*background:url(../images/play.png) no-repeat center center;*/
+	left:0;
+	position: absolute;
+	cursor:pointer;
+}
+#pop_autoplay:hover{
+	background:url(../images/play_h.png) no-repeat center center;
+}
+#pop_pause{
+	width:40px;
+	height:40px;
+	/*background:url(../images/pause.png) no-repeat center center;*/
+	left:0;
+	position: absolute;
+	cursor:pointer;
+	display:none;
+}
+#pop_pause:hover{
+	background:url(../images/pause_h.png) no-repeat center center;
+}
+
 #pop_top{
 	width:100%;
-	height:30px;
+	height:10%;
 	/*background:url(../images/tprev.png) no-repeat center center;*/
 	position: absolute;
 	cursor:pointer;
@@ -108,7 +131,7 @@ a:hover{ text-decoration:underline;}
 	background:url(../images/tprev_h.png) no-repeat center center;
 }
 #pop_left{
-	width:15%;
+	width:30%;
 	height:100%;
 	/*background:url(../images/prev.png) no-repeat center center;*/
 	position: absolute;
@@ -118,7 +141,7 @@ a:hover{ text-decoration:underline;}
 	background:url(../images/prev_h.png) no-repeat center center;
 }
 #pop_right{
-	width:15%;
+	width:30%;
 	height:100%;
 	/*background:url(../images/next.png) no-repeat center center;*/
 	position: absolute;
@@ -130,7 +153,7 @@ a:hover{ text-decoration:underline;}
 }
 #pop_bottom{
 	width:100%;
-	height:30px;
+	height:10%;
 	/*background:url(../images/bprev.png) no-repeat center center;*/
 	position: absolute;
 	bottom:0;

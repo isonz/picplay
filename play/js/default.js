@@ -1,4 +1,4 @@
-var START = 0, LEND = 0, NAME, FOLDER=new Array(), CURRI=0;
+var START = 0, LEND = 0, NAME, FOLDER=new Array(), CURRI=0, IW, IH, DBCLICKSTATUS=0, PLAY;
 
 $(document).ready(function() {
 	getDirs();
@@ -20,24 +20,42 @@ $(document).ready(function() {
 		}else{
 			nextFolder(-1);
 		}
+		
 	});
 	
 	$("#pop_right").click(function(){
-		START = START+1;
-		if(LEND>START){
-			var files = tree[NAME];
-			var pic = files[START];
-			pop(pic, START, LEND);
-		}else{
-			nextFolder(1);
-		}
+		play();
 	});
 	
 	$("#pop_bottom").click(function(){
 		nextFolder(1);
 	});
 	
+	$("#pop_autoplay").click(function(){
+		PLAY = setInterval("play()", 2000);
+		$("#pop_autoplay").hide();
+		$("#pop_pause").show();
+	});
+	
+	$("#pop_pause").click(function(){
+		clearInterval(PLAY);
+		$("#pop_autoplay").show();
+		$("#pop_pause").hide();
+	});
+	
 });
+
+function play()
+{
+	START = START+1;
+	if(LEND>START){
+		var files = tree[NAME];
+		var pic = files[START];
+		pop(pic, START, LEND);
+	}else{
+		nextFolder(1);
+	}
+}
 
 function nextFolder(n)
 {
@@ -95,12 +113,56 @@ function pop(pic, start, end)
 	$("#pop").css("top", "50%");
 	$("#bgMask").show();
 	$("#pop").show();
-	$("#pop_pic").html('<img src="'+pic+'" />');
+	$("#pop_pic").html('<img onload="resetBoxSize(0)" id="loadimg" src="'+pic+'" />');
+	START = start;
+	LEND = end;
+}
+
+function getLoadimgSize()
+{
+	var iwidth = $("#loadimg").width();
+	var iheight = $("#loadimg").height();
+	IW = iwidth;
+	IH = iheight;
+	var wwidth = $(window).width();
+	var wheight = $(window).height();
+
+	if(iwidth > wwidth){
+		$("#loadimg").width(wwidth);
+		$("#loadimg").css("height",'');
+	}
+	if(iheight > wheight){
+		$("#loadimg").height(wheight);
+		$("#loadimg").css("width",'');
+	}
+	console.log(DBCLICKSTATUS);
+	if(DBCLICKSTATUS<1){
+		//$("#loadimg").dblclick(function(){
+		$("#loadimg").click(function(){
+			if(DBCLICKSTATUS < 2){
+				$("#loadimg").width(IW);
+				$("#loadimg").height(IH);
+				resetBoxSize(1);
+				DBCLICKSTATUS = 2;
+			}else{
+				getLoadimgSize();
+				resetBoxSize(1);
+				DBCLICKSTATUS = 1;
+				$("#pop").css("top","50%");
+			}
+		});
+	}
+}
+
+function resetBoxSize(n)
+{
+	if(n<1) {
+		DBCLICKSTATUS = 0;
+		getLoadimgSize();
+	}
 	$("#pop").css("margin-top", -($("#pop").height()/2));
 	$("#pop").css("margin-left", -($("#pop").width()/2));
 	if($(window).height() < $("#pop").height()) $("#pop").css("top",($("#pop").height()/2));
-	START = start;
-	LEND = end;
 }
 
 
