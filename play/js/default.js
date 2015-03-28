@@ -32,7 +32,7 @@ $(document).ready(function() {
 	});
 	
 	$("#pop_autoplay").click(function(){
-		PLAY = setInterval("play()", 2000);
+		PLAY = setInterval("play()", 5000);
 		$("#pop_autoplay").hide();
 		$("#pop_pause").show();
 	});
