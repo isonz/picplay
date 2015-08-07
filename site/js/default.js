@@ -1,5 +1,5 @@
 var standbytime = 10000, picshowtime = 5000;
-var PLAYS = ["ads/2.jpg", "ads/1.mp4","ads/1.jpg","ads/3.mp4"];
+var PLAYS = ["../ads/2.jpg", "../ads/1.mp4","../ads/1.jpg","../ads/3.mp4"];
 var VIDEO, SRCinit, SIE, STO, CURRENTPLAY = 0, vhandler;
 $(document).ready(function() {
 	scrollBtn();
